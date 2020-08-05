@@ -1,0 +1,7 @@
+C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\bin\Debug\Nick_Carlson_DealerOn_Test.exe.config
+C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\bin\Debug\Nick_Carlson_DealerOn_Test.exe
+C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\bin\Debug\Nick_Carlson_DealerOn_Test.pdb
+C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.csprojAssemblyReference.cache
+C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.csproj.CoreCompileInputs.cache
+C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.exe
+C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.pdb

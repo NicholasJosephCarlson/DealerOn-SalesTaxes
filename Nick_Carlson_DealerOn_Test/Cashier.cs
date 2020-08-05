@@ -71,51 +71,47 @@ namespace Nick_Carlson_DealerOn_Test.Models
             foreach (var item in Basket.Items)
             {
                 string newLine = item.Name + " : ";
-                decimal subTotal = item.Quantity * item.Price;
+                decimal salesTax = 0.00M;
+                decimal importTax = 0.00M;
                 decimal priceAfterTax = 0.00M;
-                decimal justTax = 0.00M;
+                decimal totalAfterTax = 0.00M;
 
                 //Sales Tax
-                if (item.TaxExempt)
+                if (!item.TaxExempt)
                 {
-                    priceAfterTax = subTotal;
-                }
-                else
-                {
-                    decimal salesTax = subTotal * .10M; // %10 sales tax
+                    salesTax = item.Price * .10M; // %10 sales tax
                     //Round up to the nearest 5 cents
-                    decimal roundedTax = Math.Round(salesTax * 20) / 20;
-                    priceAfterTax = subTotal + roundedTax;
-                    justTax = roundedTax;
+                    salesTax = Math.Ceiling(salesTax / .05M) * .05M;
                 }
 
                 //Import Tax
                 if (item.Imported)
                 {
-                    decimal importTax = subTotal * .05M; // %5 Import Tax
+                    importTax = item.Price * .05M; // %5 Import Tax
                     //Round up to the nearest 5 cents
-                    decimal roundedTax = Math.Round(importTax * 20) / 20;
-                    priceAfterTax += roundedTax;
-                    justTax += roundedTax;
+                    importTax = Math.Ceiling(importTax/.05M)*.05M;
                 }
+
+                priceAfterTax = item.Price + salesTax + importTax;
+                totalAfterTax = priceAfterTax * item.Quantity;
 
                 if (item.Quantity > 1)
                 {
-                    newLine += priceAfterTax + " (" + item.Quantity + " @ " + item.Price + ")" + "\n";
+                    newLine += totalAfterTax + " (" + item.Quantity + " @ " + priceAfterTax + ")" + "\n";
                 }
                 else
                 {
-                    newLine += priceAfterTax + "\n";
+                    newLine += totalAfterTax + "\n";
                 }
 
-                tax += justTax;
-                total += priceAfterTax;
+                tax += (salesTax + importTax) * item.Quantity;
+                total += totalAfterTax;
                 receipt += newLine;
 
             }
 
-            string totalTax = "Sales Taxes : " + tax + "\n";
-            receipt += totalTax;
+            string salestaxes = "Sales Taxes : " + tax + "\n";
+            receipt += salestaxes;
             string totalAmount = "Total :" + total + "\n";
             receipt += totalAmount;
 

@@ -1,0 +1,7 @@
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\bin\Debug\Nick_Carlson_DealerOn_Test.exe.config
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\bin\Debug\Nick_Carlson_DealerOn_Test.exe
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\bin\Debug\Nick_Carlson_DealerOn_Test.pdb
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\obj\Debug\SalesTaxes.csprojAssemblyReference.cache
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\obj\Debug\SalesTaxes.csproj.CoreCompileInputs.cache
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.exe
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.pdb

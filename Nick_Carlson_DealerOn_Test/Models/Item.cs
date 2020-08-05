@@ -8,6 +8,7 @@ namespace Nick_Carlson_DealerOn_Test.Models
 {
     public class Item
     {
+        #region Constructors
         public Item()
         {
             Name = "";
@@ -18,18 +19,21 @@ namespace Nick_Carlson_DealerOn_Test.Models
         }
 
         public Item(Item item)
-            {
+        {
             Name = item.Name;
             Price = item.Price;
             TaxExempt = item.TaxExempt;
             Imported = item.Imported;
             Quantity = item.Quantity;
-            }
+        }
+        #endregion
 
-       public string Name { get; set; }
-       public decimal Price { get; set; }
-       public bool TaxExempt { get; set; }
-       public bool Imported { get; set; }
-       public int Quantity { get; set; }
+        #region Variables
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public bool TaxExempt { get; set; }
+        public bool Imported { get; set; }
+        public int Quantity { get; set; }
+        #endregion
     }
 }

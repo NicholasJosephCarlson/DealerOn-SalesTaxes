@@ -12,9 +12,12 @@ namespace Nick_Carlson_DealerOn_Test.Models
     /// </summary>
     public class Cashier
     {
+        #region Variables
         public ShoppingBasket Basket { get; }
         public List<Item> AvailableItems { get; }
+        #endregion
 
+        #region Constructor
         public Cashier()
         {
             Basket = new ShoppingBasket { Items = new List<Item>(), SalesTax = 0.00M, Total = 0.00M };
@@ -36,7 +39,9 @@ namespace Nick_Carlson_DealerOn_Test.Models
             };
 
         }
+        #endregion
 
+        #region Functions
         public string DisplayProducts()
         {
             string display = "Available Products : \n";
@@ -51,7 +56,6 @@ namespace Nick_Carlson_DealerOn_Test.Models
 
             return display;
         }
-
         public string GenerateReceipt()
         {
 
@@ -121,10 +125,9 @@ namespace Nick_Carlson_DealerOn_Test.Models
             receipt += "===========================RECEIPT============================\n";
             return receipt;
         }
-
         public string AddtoBasket(int quantity, string name, decimal price)
         {
-            Item newItem = validItem(name);
+            Item newItem = ValidItem(name);
 
             if (newItem != null)
             {
@@ -161,7 +164,6 @@ namespace Nick_Carlson_DealerOn_Test.Models
                 return "Sorry, we don't carry that product.";
             }
         }
-
         public ShoppingBasket ClearBasket()
         {
             Basket.Items.Clear();
@@ -169,8 +171,7 @@ namespace Nick_Carlson_DealerOn_Test.Models
             Basket.SalesTax = 0.0M;
             return Basket;
         }
-
-        private Item validItem(string Name)
+        private Item ValidItem(string Name)
         {
             foreach (var item in AvailableItems)
             {
@@ -181,7 +182,9 @@ namespace Nick_Carlson_DealerOn_Test.Models
             }
             return null;
         }
+        #endregion
 
+        #region Unit Test
         // Used to run unit test from txt file
         public void UnitTest()
         {
@@ -263,6 +266,6 @@ namespace Nick_Carlson_DealerOn_Test.Models
             Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! End Unit Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             Console.WriteLine("");
         }
-
+        #endregion
     }
 }

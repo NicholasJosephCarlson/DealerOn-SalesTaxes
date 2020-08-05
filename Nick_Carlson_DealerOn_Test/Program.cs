@@ -42,7 +42,7 @@ namespace Nick_Carlson_DealerOn_Test
                     Console.WriteLine(cashier.GenerateReceipt());
                     Console.WriteLine("Hit Enter to start a new basket, or type EXIT to close the program.");
 
-                   string finalInput =  Console.ReadLine();
+                    string finalInput = Console.ReadLine();
 
                     if (finalInput.ToUpper().Trim() == "EXIT")
                     {
@@ -83,7 +83,7 @@ namespace Nick_Carlson_DealerOn_Test
                 }
                 else // attempt to parse input and add to basket.
                 {
-                    int quantity = 0;
+                    int quantity;
                     string name = "";
                     decimal price = 0.0M;
 

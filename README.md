@@ -5,7 +5,7 @@ By Nicholas Joseph Carlson 8/5/2020
 This is my submission for the DealerOn Development Candidate coding test, problem #2 - Sales Taxes, written in C# using .Net Framework version 4.7.2. 
 
 This submission assumes that the user must choose and input the name of an item from a predetermined (hard-coded) list of products, 
-but may enter any positive quantity or price they desire. This assumtion was made to simplify determining if the item is a book, food, or
+but may enter any positive quantity and price they desire. This assumption was made to simplify determining if the item is a book, food, or
 medical item, and if the item was imported or domestic. 
 
 The Main function in Program.cs is responsible for running the main program and validating user input. 

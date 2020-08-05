@@ -5,3 +5,10 @@ C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Tes
 C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.csproj.CoreCompileInputs.cache
 C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.exe
 C:\Users\Nicho\source\repos\Nick_Carlson_DealerOn_Test\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.pdb
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\bin\Debug\Nick_Carlson_DealerOn_Test.exe.config
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\bin\Debug\Nick_Carlson_DealerOn_Test.exe
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\bin\Debug\Nick_Carlson_DealerOn_Test.pdb
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.csprojAssemblyReference.cache
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.csproj.CoreCompileInputs.cache
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.exe
+D:\Programming Tests\DealerOn-SalesTaxes\Nick_Carlson_DealerOn_Test\obj\Debug\Nick_Carlson_DealerOn_Test.pdb

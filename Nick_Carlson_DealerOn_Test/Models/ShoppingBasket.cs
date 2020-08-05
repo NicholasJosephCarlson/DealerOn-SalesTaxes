@@ -9,8 +9,7 @@ namespace Nick_Carlson_DealerOn_Test.Models
     public class ShoppingBasket
     {
        public List<Item> Items { get; set; }
-       public float SalesTax { get; set; }
-       public float Total { get; set; } 
-
+       public decimal SalesTax { get; set; }
+       public decimal Total { get; set; } 
     }
 }

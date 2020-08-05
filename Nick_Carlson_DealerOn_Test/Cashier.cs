@@ -12,16 +12,14 @@ namespace Nick_Carlson_DealerOn_Test.Models
     /// </summary>
     public class Cashier
     {
-        #region Variables
-        public ShoppingBasket Basket { get; }
+        #region Variables   
         public List<Item> AvailableItems { get; }
+        public List<Item> Basket { get; }
         #endregion
 
         #region Constructor
         public Cashier()
         {
-            Basket = new ShoppingBasket { Items = new List<Item>(), SalesTax = 0.00M, Total = 0.00M };
-
             AvailableItems = new List<Item>
             {
                 //Imported 
@@ -37,14 +35,58 @@ namespace Nick_Carlson_DealerOn_Test.Models
                 new Item { Name = "Bottle of perfume", Imported = false, Price = 0.00M, TaxExempt = false },
                 new Item { Name = "Music CD", Imported = false, Price = 0.00M, TaxExempt = false },
             };
-
+            Basket = new List<Item>();
         }
         #endregion
 
-        #region Functions
-        public string DisplayProducts()
+        #region Public Functions
+        public string AddtoBasket(int quantity, string name, decimal price)
         {
-            string display = "Available Products : \n";
+            Item newItem = ValidItem(name);
+
+            if (newItem != null)
+            {
+                newItem.Price = price;
+                newItem.Quantity = quantity;
+
+                Item duplicateItem = null;
+
+                if (Basket.Count > 0)
+                {
+                    foreach (var item in Basket)
+                    {
+                        if (item.Name.ToLower().Trim() == name.ToLower().Trim() && item.Price == price)
+                        {
+                            duplicateItem = item;
+                        }
+                    }
+                }
+
+                if (duplicateItem != null)
+                {
+                    //Update the quantity instead of adding a new item
+                    duplicateItem.Quantity += quantity;
+                }
+                else
+                {
+                    Basket.Add(new Item(newItem));
+                }
+
+                return "Added " + quantity + " " + name + " @ " + price + " to basket.";
+            }
+            else
+            {
+                return "Sorry, we don't carry that product.";
+            }
+        }
+        public List<Item> ClearBasket()
+        {
+            Basket.Clear();
+            return Basket;
+        }
+        public void DisplayProducts()
+        {
+            string display = "\n Welcome to the store where you name the price! \n  Available Products : \n";
             display += "=======================================================================\n";
 
             foreach (var item in AvailableItems)
@@ -53,22 +95,23 @@ namespace Nick_Carlson_DealerOn_Test.Models
                 display += newline;
             }
             display += "=======================================================================";
-
-            return display;
+            Console.WriteLine(display);
+            Console.WriteLine();
+            Console.WriteLine("Please enter your selection in the following format : ");
+            Console.WriteLine("[Quantity - integer] [Item Name - string] at [Price - decimal] ");
+            Console.WriteLine();
         }
         public string GenerateReceipt()
         {
-
-            if (Basket.Items.Count < 1)
+            if (Basket.Count < 1)
             {
                 return "There is nothing in your basket!";
             }
 
-
             string receipt = "===========================RECEIPT============================\n";
             decimal tax = 0.00M, total = 0.00M;
 
-            foreach (var item in Basket.Items)
+            foreach (var item in Basket)
             {
                 string newLine = item.Name + " : ";
                 decimal salesTax = 0.00M;
@@ -89,7 +132,7 @@ namespace Nick_Carlson_DealerOn_Test.Models
                 {
                     importTax = item.Price * .05M; // %5 Import Tax
                     //Round up to the nearest 5 cents
-                    importTax = Math.Ceiling(importTax/.05M)*.05M;
+                    importTax = Math.Ceiling(importTax / .05M) * .05M;
                 }
 
                 priceAfterTax = item.Price + salesTax + importTax;
@@ -115,57 +158,112 @@ namespace Nick_Carlson_DealerOn_Test.Models
             string totalAmount = "Total :" + total + "\n";
             receipt += totalAmount;
 
-            Basket.SalesTax = tax;
-            Basket.Total = total;
-
             receipt += "===========================RECEIPT============================\n";
             return receipt;
         }
-        public string AddtoBasket(int quantity, string name, decimal price)
+        public bool ResetOrExit()
         {
-            Item newItem = ValidItem(name);
+            Console.WriteLine("Hit Enter to start a new basket, or type EXIT to close the program.");
+            string finalInput = Console.ReadLine();
 
-            if (newItem != null)
+            if (finalInput.ToUpper().Trim() == "EXIT")
             {
-                newItem.Price = price;
-                newItem.Quantity = quantity;
-
-                Item duplicateItem = null;
-
-                if (Basket.Items.Count > 0)
-                {
-                    foreach (var item in Basket.Items)
-                    {
-                        if (item.Name.ToLower().Trim() == name.ToLower().Trim() && item.Price == price)
-                        {
-                            duplicateItem = item;
-                        }
-                    }
-                }
-
-                if (duplicateItem != null)
-                {
-                    //Update the quantity instead of adding a new item
-                    duplicateItem.Quantity += quantity;
-                }
-                else
-                {
-                    Basket.Items.Add(new Item(newItem));
-                }
-
-                return "Added " + quantity + " " + name + " @ " + price + " to basket.";
+                return false;
             }
             else
             {
-                return "Sorry, we don't carry that product.";
+                ClearBasket();
+                DisplayProducts();
+                return true;
             }
         }
-        public ShoppingBasket ClearBasket()
+        public bool Working()
         {
-            Basket.Items.Clear();
-            Basket.Total = 0.0M;
-            Basket.SalesTax = 0.0M;
-            return Basket;
+            string input = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(input))//Generate Receipt
+            {
+                if (Basket.Count < 1)
+                {
+                    Console.WriteLine("Please enter a quantity, item name, and price.");
+                    return true;
+                }
+
+                Console.WriteLine(GenerateReceipt());
+                return ResetOrExit();
+            }
+            else if (input.Trim().ToLower() == "unit test")
+            {
+                UnitTest();
+                return ResetOrExit();
+            }
+            else // attempt to parse input and add to basket.
+            {
+                InputResponse response = ParseInput(input);
+                Console.WriteLine(response.Message);
+                return true;
+            }
+        }
+        #endregion
+
+        #region Private Functions
+        private InputResponse ParseInput(string input)
+        {
+            InputResponse response = new InputResponse
+            {
+                Success = false,
+                Message = "Not Started",
+                Quantity = 1,
+                Price = 0.00M,
+                Name = ""
+            };
+
+            string[] splitInput = input.Split(' ');
+
+            // Parse Quantity
+            try
+            {
+                response.Quantity = int.Parse(splitInput[0]);
+
+                if (response.Quantity <= 0)
+                {
+                    throw new Exception("Invalid quantity.");
+                }
+            }
+            catch (Exception)
+            {
+                response.Message = "Please enter a valid quantity.";
+                return response;
+            }
+
+            for (int i = 1; i < splitInput.Length; i++)
+            {
+                if (splitInput[i] == "at")
+                {
+                    try
+                    {
+                        //Parse Price
+                        response.Price = decimal.Parse(splitInput[i + 1]);
+                        if (response.Price <= 0)
+                        {
+                            throw new Exception("Invalid Price.");
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        response.Message = "Please enter a valid Price.";
+                        return response;
+                    }
+                }
+                else
+                {
+                    //Parse Name
+                    response.Name += " " + splitInput[i];
+                }
+            }
+            response.Success = true;
+            response.Message = AddtoBasket(response.Quantity, response.Name, response.Price);
+            return response;
         }
         private Item ValidItem(string Name)
         {
@@ -197,7 +295,6 @@ namespace Nick_Carlson_DealerOn_Test.Models
 
                 foreach (var line in lines)
                 {
-
                     if (string.IsNullOrEmpty(line))
                     {
                         Console.WriteLine("TEST LINE : (Enter - Generate Receipt)");
@@ -208,47 +305,8 @@ namespace Nick_Carlson_DealerOn_Test.Models
                     else
                     {
                         Console.WriteLine("TEST LINE : " + line);
-                        int quantity = 0;
-                        string name = "";
-                        decimal price = 0.0M;
-                        string[] splitInput = line.Split(' ');
-
-                        try
-                        {
-                            quantity = int.Parse(splitInput[0]);
-
-                            if (quantity <= 0)
-                            {
-                                throw new Exception("Invalid quantity.");
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            Console.WriteLine("Invalid quantity.");
-                        }
-
-                        for (int i = 1; i < splitInput.Length; i++)
-                        {
-                            if (splitInput[i] == "at")
-                            {
-                                try
-                                {
-                                    price = decimal.Parse(splitInput[i + 1]);
-                                }
-                                catch (Exception)
-                                {
-                                    Console.WriteLine("Invalid Price.");
-                                }
-
-                                break;
-                            }
-                            else
-                            {
-                                name += " " + splitInput[i];
-                            }
-                        }
-
-                        Console.WriteLine(AddtoBasket(quantity, name, price));
+                        InputResponse response = ParseInput(line);
+                        Console.WriteLine(response.Message);
                     }
                 }
             }

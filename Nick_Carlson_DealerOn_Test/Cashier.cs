@@ -72,7 +72,7 @@ namespace Nick_Carlson_DealerOn_Test.Models
                     Basket.Add(new Item(newItem));
                 }
 
-                return "Added " + quantity + " " + name + " @ " + price + " to basket.";
+                return "Added " + quantity + " " + name + " @ " + price + " to basket. Input another selection, or hit Enter to complete purchase.";
             }
             else
             {
@@ -199,7 +199,7 @@ namespace Nick_Carlson_DealerOn_Test.Models
             }
             else // attempt to parse input and add to basket.
             {
-                InputResponse response = ParseInput(input);
+                InputResponse response = ParseInput(input.Trim());
                 Console.WriteLine(response.Message);
                 return true;
             }
@@ -218,7 +218,7 @@ namespace Nick_Carlson_DealerOn_Test.Models
                 Name = ""
             };
 
-            string[] splitInput = input.Split(' ');
+            string[] splitInput = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             // Parse Quantity
             try
@@ -244,10 +244,12 @@ namespace Nick_Carlson_DealerOn_Test.Models
                     {
                         //Parse Price
                         response.Price = decimal.Parse(splitInput[i + 1]);
+
                         if (response.Price <= 0)
                         {
                             throw new Exception("Invalid Price.");
                         }
+                        i = splitInput.Length; // stop parsing
                     }
                     catch (Exception)
                     {
@@ -305,7 +307,7 @@ namespace Nick_Carlson_DealerOn_Test.Models
                     else
                     {
                         Console.WriteLine("TEST LINE : " + line);
-                        InputResponse response = ParseInput(line);
+                        InputResponse response = ParseInput(line.Trim());
                         Console.WriteLine(response.Message);
                     }
                 }

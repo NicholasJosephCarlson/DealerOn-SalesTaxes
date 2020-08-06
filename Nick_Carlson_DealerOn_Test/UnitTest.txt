@@ -12,15 +12,8 @@
 1 Imported box of chocolates at 11.25
 1 Imported box of chocolates at 11.25
 
-asdasd at 123 
-
-sdasd 12 asdasd
-
-2 asda at asdad
-
-2 2 2 2
-
 1 pAckEt Of HeAdAchE Pills at 12.22
+  1    ImpoRted    Box    OF   Chocolates at 11.25
 
 1 Imported box of chocolates at 11.25
 1 Imported box of chocolates at 11.25
@@ -28,4 +21,11 @@ sdasd 12 asdasd
 1 Imported box of chocolates at 11.29
 1 pAckEt Of HeAdAchE Pills at 12.22
 2 asda at asdad
+
+
+asdasd 1 at asdas
+1 aads at 1
+1 book at 99.99
+book 1 99 at
+
 
